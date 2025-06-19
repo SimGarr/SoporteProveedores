@@ -1,11 +1,11 @@
-FROM eclipse-temurin:17-jre as compilado
+FROM eclipse-temurin:17-jre AS compilado
 WORKDIR /APP
 COPY . .
 
 CMD ["./mvnw", "clean", "package"]
 
 
-FROM eclipse-temurin:17-jre as prod
+FROM eclipse-temurin:17-jre AS prod
 WORKDIR /APP
 COPY --from=compilado /APP/target/*.jar app.jar
 
